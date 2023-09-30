@@ -286,7 +286,7 @@ var isValidSudoku = function(board){
 	let row_map = new Map()
 	let count = 0
 	let count_2 = 0
-	
+
 	for (let i = 0; i < 9; i++) {
 		if(row_map.has(board[count][i]) ){
 			return false
@@ -294,14 +294,13 @@ var isValidSudoku = function(board){
 		else if(board[count][i] != "."){
 			row_map.set(board[count][i])
 		}
-		else if(i === 8){
+		if(i === 8){
+			if(count === 8) break
 			row_map.clear()
 			count +=1
 			i = -1
 		}
-		else if(count === 8){
-			break
-		}
+		
 		
 	}
 
@@ -312,13 +311,11 @@ var isValidSudoku = function(board){
 		else if(board[k][count_2] != "."){
 			col_map.set(board[k][count_2])
 		}
-		else if(k === 8){
+		if(k === 8){
+			if(count_2 === 8) break
 			col_map.clear()
 			count_2 +=1
 			k = -1
-		}
-		else if(count_2 === 8){
-			break
 		}
 		
 	}
