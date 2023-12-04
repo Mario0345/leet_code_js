@@ -374,7 +374,66 @@ var isValidSudoku = function(board){
 
 
 var longestConsecutive = function(nums){
-	
+	let set = new Set(nums)
+	let count = 1
+	let count2 = 1
+	let set0
+  let max = 0
+	for (const elem of set) {
+		if(set.has(elem+1)){
+			continue
+		}
+		set0 = elem
+		count2 = 1
+		while(set.has(--set0)){
+			count2++
+		}
+    max = Math.max(count2,max)
+	}
+  return max
+
 }
 
-longestConsecutive([0,3,7,2,5,8,4,6,0,1])
+// longestConsecutive([0,3,7,2,5,8,4,6,0,1])
+// longestConsecutive([0,0,-1])
+// longestConsecutive([1,0,-1])
+// longestConsecutive([100,4,200,1,3,2])
+// longestConsecutive([9,1,4,7,3,-1,0,5,8,-1,6])
+// longestConsecutive([-8,-4,9,9,4,6,1,-4,-1,6,8])
+
+
+var ValidParentheses = function(s){
+	let stack = []
+
+	for (let k = 0; k < s.length; k++) {
+
+		if(s[k] === "["){
+			stack.push("]")
+		}
+		else if(s[k] === "{"){
+			stack.push("}")
+		}
+		else if(s[k] === "("){
+			stack.push(")")
+		}
+		else{
+			let temp = stack.pop()
+			if(temp === s[k]){
+				continue
+			}
+			else{
+				return false
+			}
+		}
+		
+	}
+	return !stack.length
+	
+
+
+}
+
+// ValidParentheses("()")
+ValidParentheses("()[]{}")
+// ValidParentheses("(]")
+// ValidParentheses("((")
